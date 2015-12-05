@@ -1,0 +1,7 @@
+target
+.DS_Store
+*.class
+*.jar
+*.swp
+server/logs
+logs

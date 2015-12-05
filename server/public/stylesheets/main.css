@@ -1,0 +1,45 @@
+h1{
+  text-align:center;
+}
+
+.src_wrap_div{
+  width: 90%;
+  padding: 0px;
+  margin:0 auto 0 auto;
+}
+
+.source_code{
+  font-family: Consolas, Menlo, 'Liberation Mono', Courier, monospace;
+  height:70%;
+  width:45%;
+  font-size: 1em;
+  padding: 5px;
+}
+
+p input textarea{
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.proto_class_wrap{
+  margin:0 auto 0 auto;
+}
+
+#protocode_wrap{
+  float:left;
+  margin:0 10px 0 auto;
+}
+
+#protocode{
+  height:90%;
+  width:90%;
+}
+
+#scalacode{
+  float:right;
+  margin:0 auto 0 10px;
+}
+
+#error_message{
+  clear:both;
+}

@@ -1,0 +1,31 @@
+<html>
+<head>
+  <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.js"></script>
+  <script type="text/javascript" src="@routes.Assets.at("javascripts/main.js")"></script>
+  <title>protobuf compiler</title>
+  <link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")" type="text/css" />
+  <link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("src/prettify.css"))'>
+  <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("prettify.js"))'></script>
+
+</head>
+<body>
+<h1><a href="https://github.com/xuwei-k/protobuf-compiler" target="_blank">protobuf compiler</a></h1>
+<p>
+  <button id='compile' >compile</button>
+  <button id='clear_code' >clear generated code</button>
+  <button id='clear_error_message' >clear error message</button>
+  <input type="checkbox" id="grpc" checked="checked">grpc
+  <input type="checkbox" id="java_conversions">java conversions
+</p>
+<div class='src_wrap_div'>
+  <div>
+    <div id="protocode_wrap" class="source_code">
+      <p id='proto_file_name_wrap'>file name<input id="proto_file_name" type="text" /></p>
+      <textarea id='protocode'></textarea>
+    </div>
+  </div>
+  <div><pre class="source_code prettyprint" id='scalacode'></pre></div>
+</div>
+<div id='error_message'></div>
+</body>
+</html>

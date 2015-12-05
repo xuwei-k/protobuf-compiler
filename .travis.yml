@@ -1,0 +1,11 @@
+language: scala
+
+sudo: false
+
+jdk:
+  - oraclejdk8
+
+script:
+  - git config core.whitespace tab-in-indent,trailing-space,space-before-tab,cr-at-eol
+  - git show --oneline --check
+  - sbt test

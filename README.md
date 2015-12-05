@@ -1,5 +1,7 @@
 # protobuf-compiler
 
+[![Build Status](https://travis-ci.org/xuwei-k/protobuf-compiler.svg?branch=master)](https://travis-ci.org/xuwei-k/protobuf-compiler)
+
 <http://protobuf-compiler.herokuapp.com>
 
 example

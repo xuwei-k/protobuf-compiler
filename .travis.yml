@@ -2,6 +2,10 @@ language: scala
 
 sudo: false
 
+cache:
+  directories:
+    - $HOME/.ivy2/cache
+
 jdk:
   - oraclejdk8
 
@@ -9,3 +13,4 @@ script:
   - git config core.whitespace tab-in-indent,trailing-space,space-before-tab,cr-at-eol
   - git show --oneline --check
   - sbt test
+  - find $HOME/.ivy2 -name "ivydata-*.properties" | xargs rm

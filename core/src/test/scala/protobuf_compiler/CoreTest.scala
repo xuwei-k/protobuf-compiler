@@ -54,7 +54,6 @@ final class CoreTest extends FunSpec {
       val result = Core.compile(req)
       assert(result.error, result)
       assert(result.files.isEmpty, result)
-      assert(result.message.contains("No syntax specified for the proto file."), result)
     }
   }
 

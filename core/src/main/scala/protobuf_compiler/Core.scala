@@ -13,6 +13,46 @@ import scala.util.control.NonFatal
 
 object Core {
   def compile(request: GenerateRequest): CompileResult = {
+    if(request.options.contains("java_only")) {
+      compileJava(request.files)
+    } else if(request.options.contains("java_conversions")) {
+      compileScala(request) merge compileJava(request.files)
+    } else {
+      compileScala(request)
+    }
+  }
+
+  private[this] def compileJava(files: List[ProtoFile]): CompileResult = {
+    IO.withTemporaryDirectory { inputDir =>
+      IO.withTemporaryDirectory { outputDir =>
+        val sourceFiles = files.map { f =>
+          val file = inputDir / f.name
+          IO.write(file, f.src)
+          file.absolutePath
+        }
+
+        val args = List(
+          "-v300",
+          "-I" + inputDir.absolutePath,
+          s"--java_out=${outputDir.absolutePath}"
+        ) ++ sourceFiles
+
+        val (returnCode, stdout) = withStdOut {
+          com.github.os72.protocjar.Protoc.runProtoc(args.toArray)
+        }
+
+        println("java returnCode " + returnCode)
+
+        val javaFiles = (outputDir ** "*.java").get.sortBy(_.getName).map { javaSource =>
+          println((javaSource.name, javaSource.length))
+          ScalaFile(javaSource.getName, IO.readLines(javaSource).mkString("\n"))
+        }
+        CompileResult(javaFiles.sortBy(_.name), stdout, !returnCode.contains(0))
+      }
+    }
+  }
+
+  private[this] def compileScala(request: GenerateRequest): CompileResult = {
     IO.withTemporaryDirectory { inputDir =>
       IO.withTemporaryDirectory { outputDir =>
         val c = new PosixProtocDriver
@@ -33,9 +73,9 @@ object Core {
           c.buildRunner(a => Protoc.runProtoc(a.toArray))(args)
         }
 
-        println("returnCode " + returnCode)
+        println("scala returnCode " + returnCode)
 
-        val scalaFiles = ((outputDir ** "*.scala") +++ (outputDir ** "*.java")).get.sortBy(_.getName).map { scalaSource =>
+        val scalaFiles = (outputDir ** "*.scala").get.sortBy(_.getName).map { scalaSource =>
           println((scalaSource.name, scalaSource.length))
           ScalaFile(scalaSource.getName, IO.readLines(scalaSource).mkString("\n"))
         }

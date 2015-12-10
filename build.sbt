@@ -75,10 +75,12 @@ lazy val core = module("core").settings(
   models
 )
 
+val httpzAsync = "com.github.xuwei-k" %% "httpz-async" % "0.3.0"
+
 lazy val client = module("client").settings(
   unusedWarningsSettings,
   libraryDependencies ++= (
-    ("com.github.xuwei-k" %% "httpz-async" % "0.3.0") ::
+    httpzAsync ::
     Nil
   )
 ).dependsOn(models)
@@ -87,6 +89,7 @@ lazy val server = module("server").enablePlugins(PlayScala).enablePlugins(Heroku
   baseSettings,
   herokuAppName in Compile := "protobuf-compiler",
   libraryDependencies ++= (
+    httpzAsync ::
     ("org.webjars.bower" % "google-code-prettify" % "1.0.4") ::
     ("org.webjars" %% "webjars-play" % "2.4.0-2") ::
     Nil

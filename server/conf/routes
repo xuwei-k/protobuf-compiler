@@ -1,5 +1,7 @@
 POST    /                           controllers.Application.post
 GET     /                           controllers.Application.get
+GET     /gist/:gistId.json          controllers.Application.gistApi(gistId: String, options: List[String])
+GET     /gist/:gistId               controllers.Application.gist(gistId: String, options: List[String])
 
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 GET     /webjars/*file              controllers.WebJarAssets.at(file)

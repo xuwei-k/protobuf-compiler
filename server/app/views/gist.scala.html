@@ -1,0 +1,22 @@
+@(gistURL: String, scalaFiles: Seq[protobuf_compiler.ScalaFile])
+
+<html>
+<head>
+  <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.js"></script>
+  <title>protobuf compiler</title>
+  <link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("src/prettify.css"))'>
+  <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("prettify.js"))'></script>
+</head>
+<body onload="prettyPrint()">
+<h1 style="text-align: center;"><a href="https://github.com/xuwei-k/protobuf-compiler" target="_blank">protobuf compiler</a></h1>
+<div>
+  <p><a href="@gistURL" target="_blank">@gistURL</a></p>
+</div>
+@for(f <- scalaFiles){
+<div>
+  <h2 id='@f.name'><a href='#@f.name'>@f.name</a></h2>
+  <pre class="prettyprint source_code">@f.src</pre>
+</div>
+}
+</body>
+</html>

@@ -4,11 +4,15 @@
 
 <http://protobuf-compiler.herokuapp.com>
 
-example
+## examples
+
+### REST API
 
 ```
 curl -X POST http://protobuf-compiler.herokuapp.com -d '{"files": [{"name": "foo", "src": "syntax = \"proto3\"; message A{int32 b = 1;}; service C{rpc d(A) returns (A){}}"}], "options": ["grpc", "java_conversions"], "language":["scala"]}'
 ```
+
+### from gist
 
 - <http://protobuf-compiler.herokuapp.com/gist/d8e4114f1218121641d2?options=java_conversions>
 - <http://protobuf-compiler.herokuapp.com/gist/d8e4114f1218121641d2?lang=all>

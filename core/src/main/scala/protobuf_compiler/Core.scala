@@ -13,16 +13,15 @@ import scala.util.control.NonFatal
 
 object Core {
   def compile(request: GenerateRequest): CompileResult = {
-    if(request.options.contains("java_only")) {
-      compileJava(request.files)
-    } else if(request.options.contains("java_conversions")) {
-      compileScala(request) merge compileJava(request.files)
-    } else {
-      compileScala(request)
-    }
+    request.lang.map{
+      case Language.Scala =>
+        compileScala(request)
+      case lang =>
+        compile0(request.files, lang)
+    }.reduce(_ merge _)
   }
 
-  private[this] def compileJava(files: List[ProtoFile]): CompileResult = {
+  private[this] def compile0(files: List[ProtoFile], lang: Language): CompileResult = {
     IO.withTemporaryDirectory { inputDir =>
       IO.withTemporaryDirectory { outputDir =>
         val sourceFiles = files.map { f =>
@@ -34,20 +33,20 @@ object Core {
         val args = List(
           "-v300",
           "-I" + inputDir.absolutePath,
-          s"--java_out=${outputDir.absolutePath}"
+          s"--${lang.name}_out=${outputDir.absolutePath}"
         ) ++ sourceFiles
 
         val (returnCode, stdout) = withStdOut {
           com.github.os72.protocjar.Protoc.runProtoc(args.toArray)
         }
 
-        println("java returnCode " + returnCode)
+        println(s"${lang.name} returnCode " + returnCode)
 
-        val javaFiles = (outputDir ** "*.java").get.sortBy(_.getName).map { javaSource =>
-          println((javaSource.name, javaSource.length))
-          ScalaFile(javaSource.getName, IO.readLines(javaSource).mkString("\n"))
+        val resultFiles = lang.extensions.map(ext => outputDir ** s"*.$ext").reduce(_ +++ _).get.sortBy(_.getName).map { src =>
+          println((src.name, src.length))
+          ScalaFile(src.getName, IO.readLines(src).mkString("\n"))
         }
-        CompileResult(javaFiles.sortBy(_.name), stdout, !returnCode.contains(0))
+        CompileResult(resultFiles.sortBy(_.name), stdout, !returnCode.contains(0))
       }
     }
   }

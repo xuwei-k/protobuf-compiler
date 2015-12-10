@@ -11,7 +11,7 @@ object ProtoHttpClient extends ProtoHttpClient("http://protobuf-compiler.herokua
 class ProtoHttpClient(url: String) {
   /**
       @example {{{
-      val files = GenerateRequest(List(ProtoFile("hoge",""" syntax = "proto3"; service A{} """)), List("grpc"))
+      val files = GenerateRequest(List(ProtoFile("hoge",""" syntax = "proto3"; service A{} """)), List("grpc"), Set(Language.Scala))
       ProtoHttpClient.compile(files).toOption.get.get.files.map(_.src).foreach(println)
       }}}
     */

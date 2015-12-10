@@ -18,7 +18,7 @@ $(function(){
 
       var file_name = $("#proto_file_name").val() + ".proto";
       var source_content = $("#protocode").val();
-      var sendData = {options:[]};
+      var sendData = {options:[], language:[]};
 
       sendData['files'] = [{
         name : file_name,
@@ -32,6 +32,12 @@ $(function(){
       if($("#java_conversions").is(':checked')){
         sendData["options"] = sendData["options"].concat(["java_conversions"]);
       }
+
+      $.each($(".proto_lang"), function(i, lang){
+        if($("#" + lang.id).is(':checked')){
+          sendData["language"] = sendData["language"].concat(lang.id);
+        }
+      });
 
       $("#error_message").children().remove();
       $("#protocode").children().remove();

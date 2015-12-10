@@ -10,13 +10,22 @@
 </head>
 <body>
 <h1><a href="https://github.com/xuwei-k/protobuf-compiler" target="_blank">protobuf compiler</a></h1>
-<p>
+<div>
   <button id='compile' >compile</button>
   <button id='clear_code' >clear generated code</button>
   <button id='clear_error_message' >clear error message</button>
   <input type="checkbox" id="grpc" checked="checked">grpc
   <input type="checkbox" id="java_conversions">java conversions
-</p>
+</div>
+<div>
+  <input type="checkbox" class="proto_lang" id="scala" checked="checked">scala
+  <input type="checkbox" class="proto_lang" id="java">java
+  <input type="checkbox" class="proto_lang" id="python">python
+  <input type="checkbox" class="proto_lang" id="csharp">csharp
+  <input type="checkbox" class="proto_lang" id="cpp">cpp
+  <input type="checkbox" class="proto_lang" id="ruby">ruby
+  <input type="checkbox" class="proto_lang" id="objc">objc
+</div>
 <div class='src_wrap_div'>
   <div>
     <div id="protocode_wrap" class="source_code">

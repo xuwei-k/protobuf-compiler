@@ -14,12 +14,13 @@ object Application extends Controller {
       case JsSuccess(generateRequest, _) =>
         Ok(Json.toJson(Core.compile(generateRequest)))
       case e: JsError =>
+        println(e)
         BadRequest(e.toString)
     }
   }
 
-  def gist(gistId: String, options: List[String]) = Action {
-    compileFromGist(gistId, options) match {
+  def gist(gistId: String, options: List[String], lang: List[String]) = Action {
+    compileFromGist(gistId, options, lang) match {
       case \/-(result) =>
         if(result.error){
           BadRequest(result.message)
@@ -31,8 +32,8 @@ object Application extends Controller {
     }
   }
 
-  def gistApi(gistId: String, options: List[String]) = Action {
-    compileFromGist(gistId, options) match {
+  def gistApi(gistId: String, options: List[String], lang: List[String]) = Action {
+    compileFromGist(gistId, options, lang) match {
       case \/-(result) =>
         if(result.error){
           BadRequest(result.message)
@@ -48,8 +49,9 @@ object Application extends Controller {
     Ok(views.html.main())
   }
 
-  private[this] def compileFromGist(gistId: String, options: List[String]): httpz.Error \/ CompileResult = {
+  private[this] def compileFromGist(gistId: String, options: List[String], lang: List[String]): httpz.Error \/ CompileResult = {
     println("options " + options)
+    println("lang " + lang)
     fetchGist(gistId).bimap(
       f = err => {
         err.httpOr((), _.printStackTrace())
@@ -59,7 +61,14 @@ object Application extends Controller {
         val files = a.files.collect{ case (name, file) if name.endsWith(".proto") =>
           ProtoFile(name, file.content)
         }.toList
-        Core.compile(GenerateRequest(files, options))
+        val languages = {
+          if(lang.contains("all")) {
+            Language.all
+          } else {
+            lang.flatMap(l => Language.map.get(l)).toSet
+          }
+        }
+        Core.compile(GenerateRequest(files, options, languages))
       }
     )
   }

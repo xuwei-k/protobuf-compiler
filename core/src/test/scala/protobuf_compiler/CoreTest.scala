@@ -25,6 +25,13 @@ final class CoreTest extends FunSpec {
         assert(!result.files.exists(_.src.contains("io.grpc")))
       }
 
+      it("java_only"){
+        val req = GenerateRequest(input :: Nil, List("java_only"))
+        val result = Core.compile(req)
+        assert(!result.error, result)
+        assert(extensions(result.files) == Map("java" -> 1), result)
+      }
+
       it("java conversions"){
         val req = GenerateRequest(input :: Nil, List("java_conversions"))
         val result = Core.compile(req)

@@ -37,7 +37,7 @@ val baseSettings = Seq(
     Project.extract(state).currentRef.project + branch + " > "
   },
   libraryDependencies ++= (
-    ("org.scalatest" %% "scalatest" % "2.2.5") ::
+    ("org.scalatest" %% "scalatest" % "2.2.5" % "test") ::
     Nil
   ),
   resolvers += Resolver.url("typesafe", url("http://repo.typesafe.com/typesafe/ivy-releases/"))(Resolver.ivyStylePatterns),

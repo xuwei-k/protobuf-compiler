@@ -2,7 +2,7 @@ $(function(){
 
   $("#clear_code").click(
     function(){
-      $("#scalacode").children().remove();
+      $("#generated_code").children().remove();
     }
   );
 
@@ -55,11 +55,11 @@ $(function(){
             for(var i = 0; i < data.files.length; i++){
               str += data.files[i].src + "\n\n";
             }
-            $("#scalacode").text(str);
-            $("#scalacode").attr("class", "source_code prettyprint");
+            $("#generated_code").text(str);
+            $("#generated_code").attr("class", "source_code prettyprint");
             prettyPrint();
           }else{
-            $("#scalacode").children().remove();
+            $("#generated_code").children().remove();
             $("#error_message").append("<pre style='color: red;'>" + data.message + "</pre>")
           }
         },

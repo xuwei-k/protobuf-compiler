@@ -14,9 +14,10 @@ object Language {
   case object CPP extends Language("cpp", Set("cpp", "h", "cc"))
   case object Ruby extends Language("ruby", Set("rb"))
   case object Objc extends Language("objc", Set("m", "h"))
+  case object PHP extends Language("php", Set("php"))
 
   val all: Set[Language] = Set(
-    Scala, Java, Python, CSharp, CPP, Ruby, Objc
+    Scala, Java, Python, CSharp, CPP, Ruby, Objc, PHP
   )
 
   val map: Map[String, Language] =

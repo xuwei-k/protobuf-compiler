@@ -15,9 +15,9 @@ addons:
       - php5
 
 script:
-  - git config core.whitespace tab-in-indent,trailing-space,space-before-tab,cr-at-eol
-  - git show --oneline --check
-  - ./php.sh
-  - wget https://raw.githubusercontent.com/paulp/sbt-extras/53493316/sbt && chmod +x ./sbt
-  - ./sbt test
-  - find $HOME/.ivy2 -name "ivydata-*.properties" | xargs rm
+  - git config core.whitespace tab-in-indent,trailing-space,space-before-tab,cr-at-eol &&
+    git show --oneline --check &&
+    ./php.sh &&
+    wget https://raw.githubusercontent.com/paulp/sbt-extras/53493316/sbt && chmod +x ./sbt &&
+    ./sbt test &&
+    find $HOME/.ivy2 -name "ivydata-*.properties" | xargs rm

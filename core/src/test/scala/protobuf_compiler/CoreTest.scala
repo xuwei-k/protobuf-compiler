@@ -31,6 +31,7 @@ final class CoreTest extends FunSpec {
         (Language.Ruby, Map("rb" -> 1)),
         (Language.Python, Map("py" -> 1)),
         (Language.Objc, Map("h" -> 1, "m" -> 1)),
+        (Language.PHP, Map("php" -> 1)),
         (Language.CSharp, Map("cs" -> 1))
       ).foreach{
         case (lang, expect) =>

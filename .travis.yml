@@ -20,7 +20,7 @@ script:
     bash -x ./php.sh &&
     echo $PATH &&
     which php &&
-    which protoc-gen-php &&
+    ls /home/travis/.phpenv/bin &&
     wget https://raw.githubusercontent.com/michaelklishin/jdk_switcher/724202b21/jdk_switcher.sh &&
     chmod +x ./jdk_switcher.sh &&
     source ./jdk_switcher.sh &&

@@ -17,7 +17,10 @@ addons:
 script:
   - git config core.whitespace tab-in-indent,trailing-space,space-before-tab,cr-at-eol &&
     git show --oneline --check &&
-    ./php.sh &&
+    bash -x ./php.sh &&
+    echo $PATH &&
+    which php &&
+    which protoc-gen-php &&
     wget https://raw.githubusercontent.com/michaelklishin/jdk_switcher/724202b21/jdk_switcher.sh &&
     chmod +x ./jdk_switcher.sh &&
     source ./jdk_switcher.sh &&

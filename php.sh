@@ -1,5 +1,3 @@
-curl -L --output go-pear.phar http://pear.php.net/go-pear.phar &&
-php go-pear.phar &&
 mkdir -p protoc/bin
 
 case `uname` in

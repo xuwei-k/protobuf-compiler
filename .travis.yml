@@ -1,4 +1,4 @@
-language: scala
+language: php
 
 sudo: false
 
@@ -12,12 +12,15 @@ jdk:
 addons:
   apt:
     packages:
-      - php5
+      - oracle-java8-installer
 
 script:
   - git config core.whitespace tab-in-indent,trailing-space,space-before-tab,cr-at-eol &&
     git show --oneline --check &&
     ./php.sh &&
+    wget https://raw.githubusercontent.com/michaelklishin/jdk_switcher/724202b21/jdk_switcher.sh &&
+    chmod +x ./jdk_switcher.sh &&
+    ./jdk_switcher use oraclejdk8 &&
     wget https://raw.githubusercontent.com/paulp/sbt-extras/53493316/sbt && chmod +x ./sbt &&
     ./sbt test &&
     find $HOME/.ivy2 -name "ivydata-*.properties" | xargs rm

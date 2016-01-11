@@ -1,4 +1,4 @@
-language: php
+language: scala
 
 sudo: false
 
@@ -8,6 +8,11 @@ cache:
 
 jdk:
   - oraclejdk8
+
+addons:
+  apt:
+    packages:
+      - php5
 
 script:
   - git config core.whitespace tab-in-indent,trailing-space,space-before-tab,cr-at-eol

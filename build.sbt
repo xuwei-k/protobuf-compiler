@@ -56,7 +56,7 @@ lazy val models = module("models").settings(
   libraryDependencies ++= (
     ("com.github.xuwei-k" %% "play-json-extra" % "0.3.0") ::
     ("com.typesafe.play" %% "play-json" % play.core.PlayVersion.current) ::
-    ("org.scalaz" %% "scalaz-core" % "7.1.6") ::
+    ("org.scalaz" %% "scalaz-core" % "7.1.7") ::
     Nil
   )
 )

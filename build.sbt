@@ -75,7 +75,7 @@ lazy val core = module("core").settings(
   models
 )
 
-val httpzAsync = "com.github.xuwei-k" %% "httpz-async" % "0.3.0"
+val httpzAsync = "com.github.xuwei-k" %% "httpz-async" % "0.3.1"
 
 lazy val client = module("client").settings(
   unusedWarningsSettings,

@@ -4,4 +4,4 @@ GET     /gist/:gistId.json          controllers.Application.gistApi(gistId: Stri
 GET     /gist/:gistId               controllers.Application.gist(gistId: String, options: List[String], lang: List[String])
 
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
-GET     /webjars/*file              controllers.WebJarAssets.at(file)
+GET     /webjars/*file              @controllers.WebJarAssets.at(file)

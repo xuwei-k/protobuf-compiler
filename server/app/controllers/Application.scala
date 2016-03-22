@@ -8,6 +8,15 @@ import scalaz._
 
 object Application extends Controller {
 
+  val webJarAssets = new WebJarAssets(
+    play.api.http.LazyHttpErrorHandler,
+    play.api.Play.current.configuration,
+    play.api.Environment.simple(
+      path = play.api.Play.current.path,
+      mode = play.api.Play.current.mode
+    )
+  )
+
   final val post = Action(BodyParsers.parse.tolerantJson){ request =>
     println(request.body)
     request.body.validate[GenerateRequest] match {

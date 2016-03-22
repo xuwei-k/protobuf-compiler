@@ -54,7 +54,7 @@ def module(id: String) = Project(id, file(id)).settings(
 lazy val models = module("models").settings(
   unusedWarningsSettings,
   libraryDependencies ++= (
-    ("com.github.xuwei-k" %% "play-json-extra" % "0.3.0") ::
+    ("com.github.xuwei-k" %% "play-json-extra" % "0.4.0") ::
     ("com.typesafe.play" %% "play-json" % play.core.PlayVersion.current) ::
     ("org.scalaz" %% "scalaz-core" % "7.1.7") ::
     Nil
@@ -88,10 +88,11 @@ lazy val client = module("client").settings(
 lazy val server = module("server").enablePlugins(PlayScala).enablePlugins(HerokuPlugin).settings(
   baseSettings,
   herokuAppName in Compile := "protobuf-compiler",
+  routesGenerator := StaticRoutesGenerator,
   libraryDependencies ++= (
     httpzAsync ::
     ("org.webjars.bower" % "google-code-prettify" % "1.0.4") ::
-    ("org.webjars" %% "webjars-play" % "2.4.0-2") ::
+    ("org.webjars" %% "webjars-play" % "2.5.0") ::
     Nil
   )
 ).dependsOn(core)

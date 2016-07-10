@@ -3,8 +3,7 @@ package protobuf_compiler
 import httpz.{Request, RequestF}
 import play.api.libs.json.{JsResult, Reads, Json}
 
-import scalaz.{EitherT, \/}
-import scalaz.Free.FreeC
+import scalaz.{EitherT, Free, \/}
 
 object ProtoHttpClient extends ProtoHttpClient("http://protobuf-compiler.herokuapp.com")
 
@@ -18,7 +17,7 @@ class ProtoHttpClient(url: String) {
   def compile(request: GenerateRequest): Throwable \/ JsResult[CompileResult] =
     action(request).interpretBy[scalaz.Id.Id](httpz.async.AsyncInterpreter.sequential.empty.interpreter)
 
-  def action(request: GenerateRequest): EitherT[({type l[a] = FreeC[RequestF, a]})#l, Throwable, JsResult[CompileResult]] = {
+  def action(request: GenerateRequest): EitherT[({type l[a] = Free[RequestF, a]})#l, Throwable, JsResult[CompileResult]] = {
     val req = Request(
       url = url,
       method = "POST",

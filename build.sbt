@@ -44,7 +44,7 @@ val baseSettings = Seq(
   resolvers += Opts.resolver.sonatypeReleases
 )
 
-val scalapbVersion = "0.5.32"
+val scalapbVersion = "0.5.34"
 
 def module(id: String) = Project(id, file(id)).settings(
   baseSettings,

@@ -37,14 +37,14 @@ val baseSettings = Seq(
     Project.extract(state).currentRef.project + branch + " > "
   },
   libraryDependencies ++= (
-    ("org.scalatest" %% "scalatest" % "3.0.0" % "test") ::
+    ("org.scalatest" %% "scalatest" % "3.0.1" % "test") ::
     Nil
   ),
   resolvers += Resolver.url("typesafe", url("http://repo.typesafe.com/typesafe/ivy-releases/"))(Resolver.ivyStylePatterns),
   resolvers += Opts.resolver.sonatypeReleases
 )
 
-val scalapbVersion = "0.5.41"
+val scalapbVersion = "0.5.45"
 
 def module(id: String) = Project(id, file(id)).settings(
   baseSettings,
@@ -56,7 +56,7 @@ lazy val models = module("models").settings(
   libraryDependencies ++= (
     ("com.github.xuwei-k" %% "play-json-extra" % "0.4.0") ::
     ("com.typesafe.play" %% "play-json" % play.core.PlayVersion.current) ::
-    ("org.scalaz" %% "scalaz-core" % "7.2.6") ::
+    ("org.scalaz" %% "scalaz-core" % "7.2.7") ::
     Nil
   )
 )
@@ -75,7 +75,7 @@ lazy val core = module("core").settings(
   models
 )
 
-val httpzAsync = "com.github.xuwei-k" %% "httpz-async" % "0.4.0"
+val httpzAsync = "com.github.xuwei-k" %% "httpz-async" % "0.5.0"
 
 lazy val client = module("client").settings(
   unusedWarningsSettings,

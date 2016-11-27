@@ -6,7 +6,7 @@ final class CoreTest extends FunSpec {
 
   describe("Core"){
     describe("compile success"){
-      val JavaConversionsImport = "import scala.collection.JavaConversions"
+      val JavaConvertersImport = "import scala.collection.JavaConverters"
 
       val input = ProtoFile("aaa", """ syntax = "proto3"; message BBB{ int32 ccc = 1;}; service ddd{ rpc eee(BBB) returns (BBB) {} }""")
 
@@ -21,7 +21,7 @@ final class CoreTest extends FunSpec {
         assert(!result.error, result)
         assert(result.files.size == 2, result)
         assert(extensions(result.files) == Map("scala" -> 2), result)
-        assert(!result.files.exists(_.src.contains(JavaConversionsImport)))
+        assert(!result.files.exists(_.src.contains(JavaConvertersImport)))
         assert(!result.files.exists(_.src.contains("io.grpc")))
       }
 
@@ -42,13 +42,13 @@ final class CoreTest extends FunSpec {
           }
       }
 
-      it("java conversions"){
+      it("java converters"){
         val req = GenerateRequest(input :: Nil, List("java_conversions"), Set.empty)
         val result = Core.compile(req)
         assert(!result.error, result)
         assert(result.files.size == 3, result)
         assert(extensions(result.files) == Map("scala" -> 2, "java" -> 1), result)
-        assert(result.files.exists(_.src.contains(JavaConversionsImport)))
+        assert(result.files.exists(_.src.contains(JavaConvertersImport)))
         assert(!result.files.exists(_.src.contains("io.grpc")))
       }
 
@@ -58,7 +58,7 @@ final class CoreTest extends FunSpec {
         assert(!result.error, result)
         assert(result.files.size == 3, result)
         assert(extensions(result.files) == Map("scala" -> 3), result)
-        assert(!result.files.exists(_.src.contains(JavaConversionsImport)))
+        assert(!result.files.exists(_.src.contains(JavaConvertersImport)))
         assert(result.files.exists(_.src.contains("io.grpc")))
       }
 
@@ -68,7 +68,7 @@ final class CoreTest extends FunSpec {
         assert(!result.error, result)
         assert(result.files.size == 4, result.files.map(_.name))
         assert(extensions(result.files) == Map("scala" -> 3, "java" -> 1), result)
-        assert(result.files.exists(_.src.contains(JavaConversionsImport)))
+        assert(result.files.exists(_.src.contains(JavaConvertersImport)))
         assert(result.files.exists(_.src.contains("io.grpc")))
       }
     }

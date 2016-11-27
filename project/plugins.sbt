@@ -9,7 +9,7 @@ scalacOptions ++= (
   Nil
 )
 
-addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.5.9")
+addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.5.10")
 
 addSbtPlugin("com.heroku" % "sbt-heroku" % "0.5.3")
 

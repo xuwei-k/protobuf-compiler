@@ -44,7 +44,7 @@ val baseSettings = Seq(
   resolvers += Opts.resolver.sonatypeReleases
 )
 
-val scalapbVersion = "0.5.47"
+val scalapbVersion = "0.6.0-pre1"
 
 def module(id: String) = Project(id, file(id)).settings(
   baseSettings,
@@ -66,8 +66,8 @@ lazy val core = module("core").settings(
   libraryDependencies ++= (
     ("com.trueaccord.scalapb" %% "compilerplugin" % scalapbVersion) ::
     ("com.trueaccord.scalapb" %% "scalapb-runtime" % scalapbVersion) ::
-    ("com.github.os72" % "protoc-jar" % "3.0.0.1") ::
-    ("com.google.protobuf" % "protobuf-java" % "3.0.2") ::
+    ("com.github.os72" % "protoc-jar" % "3.1.0.3") ::
+    ("com.google.protobuf" % "protobuf-java" % "3.1.0") ::
     ("org.scala-sbt" %% "io" % sbtVersion.value) ::
     Nil
   )

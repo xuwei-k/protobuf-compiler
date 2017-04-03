@@ -13,7 +13,7 @@ val unusedWarningsSettings: Seq[Setting[_]] = {
 }
 
 val baseSettings = Seq(
-  scalaVersion := "2.11.9",
+  scalaVersion := "2.11.8",
   licenses := Seq("MIT License" -> url("http://opensource.org/licenses/mit")),
   scalacOptions ++= (
     "-deprecation" ::

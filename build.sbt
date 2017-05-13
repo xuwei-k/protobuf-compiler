@@ -13,7 +13,7 @@ val unusedWarningsSettings: Seq[Setting[_]] = {
 }
 
 val baseSettings = Seq(
-  scalaVersion := "2.11.8",
+  scalaVersion := "2.11.11",
   licenses := Seq("MIT License" -> url("http://opensource.org/licenses/mit")),
   scalacOptions ++= (
     "-deprecation" ::
@@ -37,14 +37,14 @@ val baseSettings = Seq(
     Project.extract(state).currentRef.project + branch + " > "
   },
   libraryDependencies ++= (
-    ("org.scalatest" %% "scalatest" % "3.0.1" % "test") ::
+    ("org.scalatest" %% "scalatest" % "3.0.3" % "test") ::
     Nil
   ),
   resolvers += Resolver.url("typesafe", url("http://repo.typesafe.com/typesafe/ivy-releases/"))(Resolver.ivyStylePatterns),
   resolvers += Opts.resolver.sonatypeReleases
 )
 
-val scalapbVersion = "0.6.0-pre3"
+val scalapbVersion = "0.6.0-pre4"
 
 def module(id: String) = Project(id, file(id)).settings(
   baseSettings,
@@ -56,7 +56,7 @@ lazy val models = module("models").settings(
   libraryDependencies ++= (
     ("com.github.xuwei-k" %% "play-json-extra" % "0.4.3") ::
     ("com.typesafe.play" %% "play-json" % play.core.PlayVersion.current) ::
-    ("org.scalaz" %% "scalaz-core" % "7.2.10") ::
+    ("org.scalaz" %% "scalaz-core" % "7.2.12") ::
     Nil
   )
 )
@@ -66,7 +66,7 @@ lazy val core = module("core").settings(
   libraryDependencies ++= (
     ("com.trueaccord.scalapb" %% "compilerplugin" % scalapbVersion) ::
     ("com.trueaccord.scalapb" %% "scalapb-runtime" % scalapbVersion) ::
-    ("com.github.os72" % "protoc-jar" % "3.2.0") ::
+    ("com.github.os72" % "protoc-jar" % "3.2.0.1") ::
     ("org.scala-sbt" %% "io" % sbtVersion.value) ::
     Nil
   )
@@ -74,7 +74,7 @@ lazy val core = module("core").settings(
   models
 )
 
-val httpzAsync = "com.github.xuwei-k" %% "httpz-async" % "0.5.0"
+val httpzAsync = "com.github.xuwei-k" %% "httpz-async" % "0.5.1"
 
 lazy val client = module("client").settings(
   unusedWarningsSettings,

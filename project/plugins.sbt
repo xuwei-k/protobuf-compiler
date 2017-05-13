@@ -9,8 +9,8 @@ scalacOptions ++= (
   Nil
 )
 
-addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.5.13")
+addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.5.14")
 
-addSbtPlugin("com.heroku" % "sbt-heroku" % "0.5.3")
+addSbtPlugin("com.heroku" % "sbt-heroku" % "0.5.4")
 
 fullResolvers ~= {_.filterNot(_.name == "jcenter")}

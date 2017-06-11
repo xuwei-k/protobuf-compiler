@@ -44,7 +44,7 @@ val baseSettings = Seq(
   resolvers += Opts.resolver.sonatypeReleases
 )
 
-val scalapbVersion = "0.6.0-pre4"
+val scalapbVersion = "0.6.0-pre5"
 
 def module(id: String) = Project(id, file(id)).settings(
   baseSettings,
@@ -56,7 +56,7 @@ lazy val models = module("models").settings(
   libraryDependencies ++= (
     ("com.github.xuwei-k" %% "play-json-extra" % "0.4.3") ::
     ("com.typesafe.play" %% "play-json" % play.core.PlayVersion.current) ::
-    ("org.scalaz" %% "scalaz-core" % "7.2.12") ::
+    ("org.scalaz" %% "scalaz-core" % "7.2.13") ::
     Nil
   )
 )
@@ -66,7 +66,7 @@ lazy val core = module("core").settings(
   libraryDependencies ++= (
     ("com.trueaccord.scalapb" %% "compilerplugin" % scalapbVersion) ::
     ("com.trueaccord.scalapb" %% "scalapb-runtime" % scalapbVersion) ::
-    ("com.github.os72" % "protoc-jar" % "3.2.0.1") ::
+    ("com.github.os72" % "protoc-jar" % "3.3.0") ::
     ("org.scala-sbt" %% "io" % sbtVersion.value) ::
     Nil
   )

@@ -8,7 +8,7 @@ cache:
     - $HOME/.sbt/launchers
 
 jdk:
-  - oraclejdk8
+  - openjdk8
 
 script:
   - git config core.whitespace tab-in-indent,trailing-space,space-before-tab,cr-at-eol

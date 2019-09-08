@@ -40,8 +40,7 @@ val baseSettings = Seq(
     ("org.scalatest" %% "scalatest" % "3.0.3" % "test") ::
     Nil
   ),
-  resolvers += Resolver.url("typesafe", url("http://repo.typesafe.com/typesafe/ivy-releases/"))(Resolver.ivyStylePatterns),
-  resolvers += Opts.resolver.sonatypeReleases
+  resolvers += Resolver.url("typesafe", url("http://repo.typesafe.com/typesafe/ivy-releases/"))(Resolver.ivyStylePatterns)
 )
 
 val scalapbVersion = "0.6.0-pre5"
